@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarSettings"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:theme="@style/ThemeOverlay.AppCompat.DayNight.ActionBar"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/how_to_start_all_server"/>
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/radioGroup">
+    <RadioButton
+        android:id="@+id/radioButtonStartAllFromHostname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/start_all_server_individually"
+        android:checked="false"  />
+
+    <RadioButton
+        android:id="@+id/radioButtonStartAllFromGroupname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/start_all_server_by_group_name"
+        android:checked="false"  />
+    </RadioGroup>
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider" />
+
+    <TextView
+        android:id="@+id/port"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/port" />
+
+    <EditText
+        android:id="@+id/editTextPort"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number" />
+
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider" />
+
+    <TextView
+        android:id="@+id/textViewImportCSVFile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/import_filename" />
+
+    <EditText
+        android:id="@+id/editTextImportCSVFile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="1"
+        android:inputType="text"
+        android:hint="@string/filename" />
+
+    <TextView
+        android:id="@+id/textViewLoadFromCsv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/check_if_load_from_csv_file" />
+
+    <CheckBox
+        android:id="@+id/checkBoxLoadFromCsv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/load_from_csv" />
+
+    <TextView
+        android:id="@+id/textViewSendArpXTimes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/how_often_to_send_arp_request" />
+
+    <EditText
+        android:id="@+id/editTextSendArpRequest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="1"
+        android:inputType="number"
+        android:hint="3" />
+
+    <Button
+        android:id="@+id/buttonSave"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/save"
+        android:onClick="save"/>
+
+    <TextView
+        android:id="@+id/textViewImport"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/import_all_entries_from_file" />
+
+    <Button
+        android:id="@+id/buttonImport"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/import_all_entries"
+        android:onClick="importFromFileToTable"/>
+
+    <TextView
+        android:id="@+id/textViewExport"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/export_all_entries_from_database" />
+
+    <Button
+        android:id="@+id/buttonExport"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/export_all_entries"
+        android:onClick="export"/>
+
+    <TextView
+        android:id="@+id/textViewDelete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/delete_all_entries_from_database" />
+
+    <Button
+        android:id="@+id/buttonDelete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/delete_all_entries"
+        android:onClick="delete"/>
+
+</LinearLayout>

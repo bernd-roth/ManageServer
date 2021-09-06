@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Layout for individual news entries in a list -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Icon shown next hostname -->
+    <!--<ImageView
+        android:id="@+id/entry_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:padding="3dp" />-->
+
+    <TextView
+        android:id="@+id/id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:padding="3dp"
+        android:visibility="invisible"/>
+
+    <TextView
+        android:id="@+id/hostname"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
+        android:longClickable="true"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+    <!--android:layout_toRightOf="@id/entry_icon"
+    android:layout_alignTop="@id/entry_icon"-->
+
+    <TextView
+        android:id="@+id/groupname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/hostname"
+        android:layout_alignLeft="@id/hostname"
+        android:longClickable="true"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/ipaddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/groupname"
+        android:layout_below="@id/groupname"
+        android:textSize="12sp"
+        android:longClickable="true" />
+
+    <TextView
+        android:id="@+id/broadcast"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/ipaddress"
+        android:layout_below="@id/ipaddress"
+        android:textSize="12sp"
+        android:longClickable="true" />
+
+    <TextView
+        android:id="@+id/nicmac"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/broadcast"
+        android:layout_below="@id/broadcast"
+        android:textSize="12sp"
+        android:longClickable="true" />
+
+    <TextView
+        android:id="@+id/comment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/nicmac"
+        android:layout_below="@id/nicmac"
+        android:textSize="12sp"
+        android:longClickable="true" />
+</RelativeLayout>
