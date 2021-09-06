@@ -1,10 +1,12 @@
 package at.co.netconsulting.manageactivity;
 
 import android.os.Bundle;
+import android.text.InputFilter;
 import android.view.View;
 import android.widget.EditText;
 import at.co.netconsulting.manageactivity.database.DBHelper;
 import at.co.netconsulting.manageactivity.general.BaseActivity;
+import at.co.netconsulting.manageactivity.general.MinMaxFilter;
 
 public class Manual_Input_Activity extends BaseActivity {
 
@@ -35,6 +37,7 @@ public class Manual_Input_Activity extends BaseActivity {
         editTextUsername = findViewById(R.id.editTextUsername);
         editTextPassword = findViewById(R.id.editTextPassword);
         editTextSSH_Port = findViewById(R.id.editTextSSH_Port);
+        editTextSSH_Port.setFilters( new InputFilter[]{ new MinMaxFilter( 1, 65535 )}) ;
     }
 
     private void initializeObjects() {

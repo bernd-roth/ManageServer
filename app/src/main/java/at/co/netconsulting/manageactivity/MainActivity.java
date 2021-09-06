@@ -14,6 +14,7 @@ import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
+import android.text.InputFilter;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -37,6 +38,7 @@ import java.util.Properties;
 
 import at.co.netconsulting.manageactivity.database.DBHelper;
 import at.co.netconsulting.manageactivity.general.BaseActivity;
+import at.co.netconsulting.manageactivity.general.MinMaxFilter;
 import at.co.netconsulting.manageactivity.general.SharedPreferenceModel;
 import at.co.netconsulting.manageactivity.general.StaticFields;
 import at.co.netconsulting.manageactivity.poj.EntryPoj;
@@ -352,6 +354,7 @@ public class MainActivity extends BaseActivity {
         EditText editTextUsername = (EditText) dialogView.findViewById(R.id.username);
         EditText editTextPassword = (EditText) dialogView.findViewById(R.id.password);
         EditText editTextSSH_Port = (EditText) dialogView.findViewById(R.id.ssh_port);
+        editTextSSH_Port.setFilters( new InputFilter[]{ new MinMaxFilter( 1, 65535 )}) ;
 
         // Inflate and set the layout for the dialog
         // Pass null as the parent view because its going in the dialog layout
@@ -421,6 +424,7 @@ public class MainActivity extends BaseActivity {
         editTextUsername.setText(entryPoj.getUsername());
         editTextPassword.setText(entryPoj.getPassword());
         editTextSSH_Port.setText(entryPoj.getSsh_port());
+        editTextSSH_Port.setFilters( new InputFilter[]{ new MinMaxFilter( 1, 65535 )}) ;
 
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
