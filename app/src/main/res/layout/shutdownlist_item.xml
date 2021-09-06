@@ -56,7 +56,7 @@
         android:longClickable="true" />
 
     <TextView
-        android:id="@+id/broadcast"
+        android:id="@+id/username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@id/ipaddress"
@@ -65,20 +65,21 @@
         android:longClickable="true" />
 
     <TextView
-        android:id="@+id/nicmac"
+        android:id="@+id/password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@id/broadcast"
-        android:layout_below="@id/broadcast"
+        android:layout_alignLeft="@id/username"
+        android:layout_below="@id/username"
         android:textSize="12sp"
-        android:longClickable="true" />
+        android:longClickable="true"
+        android:inputType="textPassword"/>
 
     <TextView
-        android:id="@+id/comment"
+        android:id="@+id/ssh_port"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@id/nicmac"
-        android:layout_below="@id/nicmac"
+        android:layout_alignLeft="@id/password"
+        android:layout_below="@id/password"
         android:textSize="12sp"
         android:longClickable="true" />
 </RelativeLayout>

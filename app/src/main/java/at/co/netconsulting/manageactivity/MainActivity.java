@@ -55,7 +55,8 @@ public class MainActivity extends BaseActivity {
     private Toolbar toolbar;
     private SwipeRefreshLayout swipeRefreshLayout, swipeRefreshLayoutShutdownServer;
     private ListView entryListView, shutdownServerListView;
-    private EntryAdapter entryAdapter, entryAdapterShutdownServer;
+    private EntryAdapter entryAdapter;
+    private EntryAdapterShutdownServer entryAdapterShutdownServer;
     private SharedPreferences sharedPreferences;
     private String magicPacket;
 
@@ -452,7 +453,7 @@ public class MainActivity extends BaseActivity {
 
         // set up the list for shutdown server
         shutdownServerListView = (ListView) findViewById(R.id.listshutdown);
-        entryAdapterShutdownServer = new EntryAdapter(this, R.layout.shutdownlist_item);
+        entryAdapterShutdownServer = new EntryAdapterShutdownServer(this, R.layout.shutdownlist_item);
         shutdownServerListView.setAdapter(entryAdapterShutdownServer);
     }
 
