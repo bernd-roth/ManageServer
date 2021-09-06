@@ -186,6 +186,9 @@ public class SettingsActivity extends BaseActivity {
                 stringbuilder.append(allEntries.get(i).getBroadcast()+";");
                 stringbuilder.append(allEntries.get(i).getNic_mac()+";");
                 stringbuilder.append(allEntries.get(i).getComment());
+                stringbuilder.append(allEntries.get(i).getUsername());
+                stringbuilder.append(allEntries.get(i).getPassword());
+                stringbuilder.append(allEntries.get(i).getSsh_port());
                 stringbuilder.append("\n");
             }
             writer.write(stringbuilder.toString());
