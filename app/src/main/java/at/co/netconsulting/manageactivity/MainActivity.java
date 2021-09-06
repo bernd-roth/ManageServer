@@ -38,6 +38,7 @@ import java.util.Properties;
 
 import at.co.netconsulting.manageactivity.database.DBHelper;
 import at.co.netconsulting.manageactivity.general.BaseActivity;
+import at.co.netconsulting.manageactivity.general.IPAddressFilter;
 import at.co.netconsulting.manageactivity.general.MinMaxFilter;
 import at.co.netconsulting.manageactivity.general.SharedPreferenceModel;
 import at.co.netconsulting.manageactivity.general.StaticFields;
@@ -430,7 +431,8 @@ public class MainActivity extends BaseActivity {
         editTextHostname.setText(entryPoj.getHostname());
         editTextGroupname.setText(entryPoj.getGroup_name());
         editTextIpaddress.setText(entryPoj.getIp_address());
-        editTextBroadcast.setText(entryPoj.getIp_address());
+           editTextIpaddress.setFilters( new InputFilter[]{ new IPAddressFilter()}) ;
+        editTextBroadcast.setText(entryPoj.getBroadcast());
         editTextNicMac.setText(entryPoj.getNic_mac());
         editTextComment.setText(entryPoj.getComment());
         editTextUsername.setText(entryPoj.getUsername());
