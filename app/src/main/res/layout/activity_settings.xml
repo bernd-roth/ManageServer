@@ -33,12 +33,6 @@
         android:checked="false"  />
     </RadioGroup>
 
-    <View
-        android:id="@+id/divider"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="?android:attr/listDivider" />
-
     <TextView
         android:id="@+id/port"
         android:layout_width="match_parent"
@@ -51,12 +45,6 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="number" />
-
-    <View
-        android:id="@+id/divider2"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="?android:attr/listDivider" />
 
     <TextView
         android:id="@+id/textViewImportCSVFile"
@@ -143,5 +131,4 @@
         android:layout_height="wrap_content"
         android:text="@string/delete_all_entries"
         android:onClick="delete"/>
-
 </LinearLayout>
