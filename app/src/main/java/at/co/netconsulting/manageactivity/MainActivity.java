@@ -53,7 +53,7 @@ public class MainActivity extends BaseActivity {
     private DBHelper dbHelper;
     //    private ImageView imageView;
     private Toolbar toolbar;
-    private SwipeRefreshLayout swipeRefreshLayout;
+    private SwipeRefreshLayout swipeRefreshLayout, swipeRefreshLayoutShutdownServer;
     private ListView entryListView, shutdownServerListView;
     private EntryAdapter entryAdapter, entryAdapterShutdownServer;
     private SharedPreferences sharedPreferences;
@@ -76,6 +76,17 @@ public class MainActivity extends BaseActivity {
                 entryAdapterShutdownServer.clear();
                 getEntriesFromDbOrCsv();
                 swipeRefreshLayout.setRefreshing(false);
+            }
+        });
+
+        swipeRefreshLayoutShutdownServer = (SwipeRefreshLayout) findViewById(R.id.refreshLayoutShutdownServer);
+        swipeRefreshLayoutShutdownServer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                entryAdapter.clear();
+                entryAdapterShutdownServer.clear();
+                getEntriesFromDbOrCsv();
+                swipeRefreshLayoutShutdownServer.setRefreshing(false);
             }
         });
 
