@@ -436,7 +436,7 @@ public class MainActivity extends BaseActivity {
         editTextUsername.setText(entryPoj.getUsername());
         editTextPassword.setText(entryPoj.getPassword());
         editTextSSH_Port.setText(entryPoj.getSsh_port());
-        editTextSSH_Port.setFilters( new InputFilter[]{ new MinMaxFilter( 1, 65535 )}) ;
+        editTextSSH_Port.setFilters( new InputFilter[]{ new MinMaxFilter( 0, 65535 )}) ;
 
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
