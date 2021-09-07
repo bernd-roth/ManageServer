@@ -213,7 +213,7 @@ public class MainActivity extends BaseActivity {
                                     return null;
                                 }
                             }.execute(1);
-                            Toast.makeText(getApplicationContext(), "Host " + hostname + " was shut down.", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), getString(R.string.host_shutdown, hostname), Toast.LENGTH_LONG).show();
                         }
                     }
                 } else
@@ -237,7 +237,7 @@ public class MainActivity extends BaseActivity {
                                   return null;
                               }
                         }.execute(1);
-                        Toast.makeText(getApplicationContext(), "Host " + hostname + " was shut down.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), getString(R.string.host_shutdown, hostname), Toast.LENGTH_LONG).show();
                         //Shut down more than 1 server/client
                     } else if (savedRadioIndex == 1 && !checkboxCsvEvaluation) {
                         entryPoj = entryAdapterShutdownServer.getItem(position);
@@ -260,7 +260,7 @@ public class MainActivity extends BaseActivity {
                                     return null;
                                 }
                             }.execute(1);
-                            Toast.makeText(getApplicationContext(), "Host " + hostname + " was shut down.", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), getString(R.string.host_shutdown, hostname), Toast.LENGTH_LONG).show();
                         }
                     }
             });

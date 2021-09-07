@@ -1,12 +1,6 @@
 <resources>
     <string name="app_name">ManageServer</string>
     <string name="action_settings">Settings</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
-
     <string name="action_main">Main</string>
     <string name="title_activity_settings">SettingsActivity</string>
     <string name="action_manual_input">Manual Input</string>
@@ -16,6 +10,7 @@
     <string name="magic_packet_group">Magic packet to group %1$s was sent</string>
     <string name="server_file">The specified file was not found</string>
     <string name="go_to_settings">Go to settings and enable permissions</string>
+    <string name="host_shutdown">Host %1$s was shut down.</string>
 
     <!--Labels-->
     <string name="update">UPDATE</string>
