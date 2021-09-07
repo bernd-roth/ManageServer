@@ -40,6 +40,7 @@ import at.co.netconsulting.manageactivity.database.DBHelper;
 import at.co.netconsulting.manageactivity.general.BaseActivity;
 import at.co.netconsulting.manageactivity.general.IPAddressFilter;
 import at.co.netconsulting.manageactivity.general.MinMaxFilter;
+import at.co.netconsulting.manageactivity.general.NicMacFilter;
 import at.co.netconsulting.manageactivity.general.SharedPreferenceModel;
 import at.co.netconsulting.manageactivity.general.StaticFields;
 import at.co.netconsulting.manageactivity.poj.EntryPoj;
@@ -440,11 +441,12 @@ public class MainActivity extends BaseActivity {
            editTextIpaddress.setFilters( new InputFilter[]{ new IPAddressFilter()}) ;
         editTextBroadcast.setText(entryPoj.getBroadcast());
         editTextNicMac.setText(entryPoj.getNic_mac());
+            editTextNicMac.setFilters( new InputFilter[]{ new NicMacFilter()});
         editTextComment.setText(entryPoj.getComment());
         editTextUsername.setText(entryPoj.getUsername());
         editTextPassword.setText(entryPoj.getPassword());
         editTextSSH_Port.setText(entryPoj.getSsh_port());
-        editTextSSH_Port.setFilters( new InputFilter[]{ new MinMaxFilter( 0, 65535 )}) ;
+            editTextSSH_Port.setFilters( new InputFilter[]{ new MinMaxFilter( 0, 65535 )}) ;
 
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
