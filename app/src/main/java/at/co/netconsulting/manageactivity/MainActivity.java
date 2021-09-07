@@ -192,6 +192,7 @@ public class MainActivity extends BaseActivity {
 
                 if (checkboxCsvEvaluation && savedRadioIndex == 1) {
                     entryPoj = entryAdapterShutdownServer.getItem(position);
+                    String hostname = entryPoj.getHostname();
                     String ip = entryPoj.getIp_address();
                     String groupName = entryPoj.getGroup_name();
                     String username = entryPoj.getUsername();
@@ -212,12 +213,14 @@ public class MainActivity extends BaseActivity {
                                     return null;
                                 }
                             }.execute(1);
+                            Toast.makeText(getApplicationContext(), "Host " + hostname + " was shut down.", Toast.LENGTH_LONG).show();
                         }
                     }
                 } else
                     //Only for one server/client to shut down
                     if (savedRadioIndex == 0) {
                         entryPoj = entryAdapterShutdownServer.getItem(position);
+                        String hostname = entryPoj.getHostname();
                         String ip = entryPoj.getIp_address();
                         String username = entryPoj.getUsername();
                         String password = entryPoj.getPassword();
@@ -234,11 +237,13 @@ public class MainActivity extends BaseActivity {
                                   return null;
                               }
                         }.execute(1);
+                        Toast.makeText(getApplicationContext(), "Host " + hostname + " was shut down.", Toast.LENGTH_LONG).show();
                         //Shut down more than 1 server/client
                     } else if (savedRadioIndex == 1 && !checkboxCsvEvaluation) {
                         entryPoj = entryAdapterShutdownServer.getItem(position);
                         List<EntryPoj> listPoj = dbHelper.getAllEntriesByGroupName(entryPoj.getGroup_name());
                         for (int i = 0; i < listPoj.size(); i++) {
+                            String hostname = listPoj.get(i).getHostname();
                             String ip = listPoj.get(i).getIp_address();
                             String username = listPoj.get(i).getUsername();
                             String password = listPoj.get(i).getPassword();
@@ -255,6 +260,7 @@ public class MainActivity extends BaseActivity {
                                     return null;
                                 }
                             }.execute(1);
+                            Toast.makeText(getApplicationContext(), "Host " + hostname + " was shut down.", Toast.LENGTH_LONG).show();
                         }
                     }
             });
