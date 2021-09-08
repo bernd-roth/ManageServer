@@ -174,7 +174,8 @@ public class SettingsActivity extends BaseActivity {
 
         dateTimeFormat = DateTimeFormatter.ofPattern("dd-MM-yyyy_HH-mm-ss").format(LocalDateTime.now());
 
-        File backupFile = new File(Environment.getExternalStorageDirectory() + "/" + "export_server.csv." + dateTimeFormat);
+        File backupFile = new File(this.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS) + "/" + "export_server.csv." + dateTimeFormat);
+
         StringBuilder stringbuilder = new StringBuilder();
 
         try (PrintWriter writer = new PrintWriter(backupFile)) {
@@ -204,7 +205,8 @@ public class SettingsActivity extends BaseActivity {
 
             String hostname = null, groupName, ip, broadcast, mac, comment, username, password, ssh_port;
             List<EntryPoj> listEntryPoj = new ArrayList<EntryPoj>();
-            File csvfile = new File(Environment.getExternalStorageDirectory() + "/" + csvFileName);
+            //File csvfile = new File(Environment.getExternalStorageDirectory() + "/" + csvFileName);
+            File csvfile = new File(this.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS) + "/" + csvFileName);
             CSVReader reader = new CSVReader(new FileReader(csvfile.getAbsolutePath()));
             String[] nextLine;
             int id = 1;
