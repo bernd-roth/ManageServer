@@ -129,17 +129,20 @@ public class MainActivity extends BaseActivity {
                         String ip = entryPoj.getIp_address();
                         String broadcast = entryPoj.getBroadcast();
                         String nicMac = entryPoj.getNic_mac();
-                        String groupName = entryPoj.getGroup_name();
-                        String hostname = entryPoj.getHostname();
-                        for (int i = 0; i < entryAdapter.getCount(); i++) {
-                            entryPoj = entryAdapter.getItem(i);
-                            String groupNamePosition = entryPoj.getGroup_name();
-                            if (groupNamePosition.equals(groupName)) {
-                                AsyncTask<Object, Object, Object> send;
-                                for (int j = 0; j < arpRequest; j++)
-                                    send = new MagicPacket(broadcast, nicMac, port).execute();
-                                magicPacket = getString(R.string.magic_packet_group, hostname);
-                                Toast.makeText(getApplicationContext(), magicPacket, Toast.LENGTH_LONG).show();
+                        String[] groupNames = entryPoj.getGroup_name().split(";");
+
+                        for(String groupName : groupNames) {
+                            String hostname = entryPoj.getHostname();
+                            for (int i = 0; i < entryAdapter.getCount(); i++) {
+                                entryPoj = entryAdapter.getItem(i);
+                                String groupNamePosition = entryPoj.getGroup_name();
+                                if (groupNamePosition.equals(groupName)) {
+                                    AsyncTask<Object, Object, Object> send;
+                                    for (int j = 0; j < arpRequest; j++)
+                                        send = new MagicPacket(broadcast, nicMac, port).execute();
+                                    magicPacket = getString(R.string.magic_packet_group, hostname);
+                                    Toast.makeText(getApplicationContext(), magicPacket, Toast.LENGTH_LONG).show();
+                                }
                             }
                         }
                     } else
@@ -195,26 +198,29 @@ public class MainActivity extends BaseActivity {
                     entryPoj = entryAdapterShutdownServer.getItem(position);
                     String hostname = entryPoj.getHostname();
                     String ip = entryPoj.getIp_address();
-                    String groupName = entryPoj.getGroup_name();
+                    String[] groupNames = entryPoj.getGroup_name().split(";");
                     String username = entryPoj.getUsername();
                     String password = entryPoj.getPassword();
                     String ssh_port = entryPoj.getSsh_port();
-                    for (int i = 0; i < entryAdapterShutdownServer.getCount(); i++) {
-                        entryPoj = entryAdapterShutdownServer.getItem(i);
-                        String groupNamePosition = entryPoj.getGroup_name();
-                        if (groupNamePosition.equals(groupName)) {
-                            new AsyncTask<Integer, Void, Void>(){
-                                @Override
-                                protected Void doInBackground(Integer... params) {
-                                    try {
-                                        boolean isExecuted = executeSSHcommand(username, password, ssh_port, ip);
-                                    } catch (Exception e) {
-                                        e.printStackTrace();
+
+                    for(String groupName : groupNames) {
+                        for (int i = 0; i < entryAdapterShutdownServer.getCount(); i++) {
+                            entryPoj = entryAdapterShutdownServer.getItem(i);
+                            String groupNamePosition = entryPoj.getGroup_name();
+                            if (groupNamePosition.equals(groupName)) {
+                                new AsyncTask<Integer, Void, Void>() {
+                                    @Override
+                                    protected Void doInBackground(Integer... params) {
+                                        try {
+                                            boolean isExecuted = executeSSHcommand(username, password, ssh_port, ip);
+                                        } catch (Exception e) {
+                                            e.printStackTrace();
+                                        }
+                                        return null;
                                     }
-                                    return null;
-                                }
-                            }.execute(1);
-                            Toast.makeText(getApplicationContext(), getString(R.string.host_shutdown, hostname), Toast.LENGTH_LONG).show();
+                                }.execute(1);
+                                Toast.makeText(getApplicationContext(), getString(R.string.host_shutdown, hostname), Toast.LENGTH_LONG).show();
+                            }
                         }
                     }
                 } else
@@ -243,25 +249,31 @@ public class MainActivity extends BaseActivity {
                     } else if (savedRadioIndex == 1 && !checkboxCsvEvaluation) {
                         entryPoj = entryAdapterShutdownServer.getItem(position);
                         List<EntryPoj> listPoj = dbHelper.getAllEntriesByGroupName(entryPoj.getGroup_name());
-                        for (int i = 0; i < listPoj.size(); i++) {
-                            String hostname = listPoj.get(i).getHostname();
-                            String ip = listPoj.get(i).getIp_address();
-                            String username = listPoj.get(i).getUsername();
-                            String password = listPoj.get(i).getPassword();
-                            String ssh_port = listPoj.get(i).getSsh_port();
 
-                            new AsyncTask<Integer, Void, Void>() {
-                                @Override
-                                protected Void doInBackground(Integer... params) {
-                                    try {
-                                        boolean isExecuted = executeSSHcommand(username, password, ssh_port, ip);
-                                    } catch (Exception e) {
-                                        e.printStackTrace();
+                        for (int i = 0; i < listPoj.size(); i++) {
+                            String[] groupNames = listPoj.get(i).getGroup_name().split(";");
+                            for(String groupName : groupNames) {
+                                List<EntryPoj> listGrpName = dbHelper.getAllEntriesByGroupName(groupName);
+
+                                String hostname = listGrpName.get(i).getHostname();
+                                String ip = listGrpName.get(i).getIp_address();
+                                String username = listGrpName.get(i).getUsername();
+                                String password = listGrpName.get(i).getPassword();
+                                String ssh_port = listGrpName.get(i).getSsh_port();
+
+                                new AsyncTask<Integer, Void, Void>() {
+                                    @Override
+                                    protected Void doInBackground(Integer... params) {
+                                        try {
+                                            boolean isExecuted = executeSSHcommand(username, password, ssh_port, ip);
+                                        } catch (Exception e) {
+                                            e.printStackTrace();
+                                        }
+                                        return null;
                                     }
-                                    return null;
-                                }
-                            }.execute(1);
-                            Toast.makeText(getApplicationContext(), getString(R.string.host_shutdown, hostname), Toast.LENGTH_LONG).show();
+                                }.execute(1);
+                                Toast.makeText(getApplicationContext(), getString(R.string.host_shutdown, hostname), Toast.LENGTH_LONG).show();
+                            }
                         }
                     }
             });
