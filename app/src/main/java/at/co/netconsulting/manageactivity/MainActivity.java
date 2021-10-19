@@ -161,17 +161,22 @@ public class MainActivity extends BaseActivity {
                             //Start more than 1 server/client
                         } else if (savedRadioIndex == 1 && !checkboxCsvEvaluation) {
                             entryPoj = entryAdapter.getItem(position);
-                            List<EntryPoj> listPoj = dbHelper.getAllEntriesByGroupName(entryPoj.getGroup_name());
-                            for (int i = 0; i < listPoj.size(); i++) {
-                                String ip = listPoj.get(i).getIp_address();
-                                String broadcast = listPoj.get(i).getBroadcast();
-                                String nicMac = listPoj.get(i).getNic_mac();
-                                String group = listPoj.get(i).getGroup_name();
-                                AsyncTask<Object, Object, Object> send;
-                                for (int j = 0; j < arpRequest; j++)
-                                    send = new MagicPacket(broadcast, nicMac, port).execute();
-                                magicPacket = getString(R.string.magic_packet_group, group);
-                                Toast.makeText(getApplicationContext(), magicPacket, Toast.LENGTH_LONG).show();
+
+                            String[] groupNames = entryPoj.getGroup_name().split(";");
+
+                            for(String groupName : groupNames) {
+                                List<EntryPoj> listPoj = dbHelper.getAllEntriesByGroupName(groupName);
+                                for (int i = 0; i < listPoj.size(); i++) {
+                                    String ip = listPoj.get(i).getIp_address();
+                                    String broadcast = listPoj.get(i).getBroadcast();
+                                    String nicMac = listPoj.get(i).getNic_mac();
+                                    String group = listPoj.get(i).getGroup_name();
+                                    AsyncTask<Object, Object, Object> send;
+                                    for (int j = 0; j < arpRequest; j++)
+                                        send = new MagicPacket(broadcast, nicMac, port).execute();
+                                    magicPacket = getString(R.string.magic_packet_group, group);
+                                    Toast.makeText(getApplicationContext(), magicPacket, Toast.LENGTH_LONG).show();
+                                }
                             }
                         }
                 }
