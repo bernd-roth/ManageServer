@@ -256,29 +256,24 @@ public class MainActivity extends BaseActivity {
                         List<EntryPoj> listPoj = dbHelper.getAllEntriesByGroupName(entryPoj.getGroup_name());
 
                         for (int i = 0; i < listPoj.size(); i++) {
-                            String[] groupNames = listPoj.get(i).getGroup_name().split(";");
-                            for(String groupName : groupNames) {
-                                List<EntryPoj> listGrpName = dbHelper.getAllEntriesByGroupName(groupName);
+                            String hostname = listPoj.get(i).getHostname();
+                            String ip = listPoj.get(i).getIp_address();
+                            String username = listPoj.get(i).getUsername();
+                            String password = listPoj.get(i).getPassword();
+                            String ssh_port = listPoj.get(i).getSsh_port();
 
-                                String hostname = listGrpName.get(i).getHostname();
-                                String ip = listGrpName.get(i).getIp_address();
-                                String username = listGrpName.get(i).getUsername();
-                                String password = listGrpName.get(i).getPassword();
-                                String ssh_port = listGrpName.get(i).getSsh_port();
-
-                                new AsyncTask<Integer, Void, Void>() {
-                                    @Override
-                                    protected Void doInBackground(Integer... params) {
-                                        try {
-                                            boolean isExecuted = executeSSHcommand(username, password, ssh_port, ip);
-                                        } catch (Exception e) {
-                                            e.printStackTrace();
-                                        }
-                                        return null;
+                            new AsyncTask<Integer, Void, Void>() {
+                                @Override
+                                protected Void doInBackground(Integer... params) {
+                                    try {
+                                        boolean isExecuted = executeSSHcommand(username, password, ssh_port, ip);
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
                                     }
-                                }.execute(1);
-                                Toast.makeText(getApplicationContext(), getString(R.string.host_shutdown, hostname), Toast.LENGTH_LONG).show();
-                            }
+                                    return null;
+                                }
+                            }.execute(1);
+                            Toast.makeText(getApplicationContext(), getString(R.string.host_shutdown, hostname), Toast.LENGTH_LONG).show();
                         }
                     }
             });
